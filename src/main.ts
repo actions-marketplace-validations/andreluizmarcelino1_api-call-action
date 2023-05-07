@@ -24,6 +24,12 @@ async function run(): Promise<void> {
                 headers,
                 params,
             });
+        } else if (type === 'PUT') {
+            info(`Sending PUT request to ${url}`);
+            await axios.put(url, data, {
+                headers,
+                params,
+            });
         }
     } catch (err) {
         if (err instanceof Error) {
