@@ -1,0 +1,28 @@
+name: 'API Call Action'
+description: 'Send a POST/PATCH request'
+author: 'Andre Luiz Marcelino'
+branding:
+  icon: 'phone'  
+  color: 'orange'
+inputs:
+  url:
+    description: 'URL to send request to'
+    required: true
+  type:
+    description: 'Type to send request to POST or PATCH'
+    required: true
+  data:
+    description: 'JSON string of data to pass into request'
+    default: '{}'
+    required: false
+  headers:
+    description: 'JSON string of headers to pass into request'
+    default: '{}'
+    required: false
+  params:
+    description: 'JSON string of query parameters to pass into request'
+    default: '{}'
+    required: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
