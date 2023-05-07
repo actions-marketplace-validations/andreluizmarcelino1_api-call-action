@@ -10,21 +10,21 @@ async function run(): Promise<void> {
         const headers = parseJsonSafely(getInput('headers'));
         const params = parseJsonSafely(getInput('params'));
 
-        if (type === 'POST') {
-            info(`Sending POST request to ${url}`);
-            await axios.post(url, data, {
-                headers,
-                params,
-            });
-        } else if (type === 'PATCH') {
+        if (type === 'PATCH') {
             info(`Sending PATCH request to ${url}`);
             await axios.patch(url, data, {
                 headers,
                 params,
             });
         }
-
-
+        
+        if (type === 'POST') {
+            info(`Sending POST request to ${url}`);
+            await axios.post(url, data, {
+                headers,
+                params,
+            });
+        }
     } catch (err) {
         if (err instanceof Error) {
             error(err.message);
