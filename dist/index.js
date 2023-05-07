@@ -23,18 +23,29 @@ const core_1 = __nccwpck_require__(2186);
 const axios_1 = __importDefault(__nccwpck_require__(6545));
 const parseJsonSafely_1 = __nccwpck_require__(8521);
 function run() {
-    return __awaiter(this, void 0, void 0, function* () {
+    return __awaiter(this, void 0, void 0, function* () {       
         try {
-            const url = core_1.getInput('url');
-            const data = parseJsonSafely_1.parseJsonSafely(core_1.getInput('data'));
-            const headers = parseJsonSafely_1.parseJsonSafely(core_1.getInput('headers'));
-            const params = parseJsonSafely_1.parseJsonSafely(core_1.getInput('params'));
-            core_1.info(`Sending POST request to ${url}`);
-            yield axios_1.default.post(url, data, {
-                headers,
-                params,
-            });
-        }
+          const url = core_1.getInput('url');
+          const type = core_1.getInput('type');
+          const data = parseJsonSafely_1.parseJsonSafely(core_1.getInput('data'));
+          const headers = parseJsonSafely_1.parseJsonSafely(core_1.getInput('headers'));
+          const params = parseJsonSafely_1.parseJsonSafely(core_1.getInput('params'));
+          core_1.info(`Type of request ${type}`);
+          if (type === 'POST') {
+              core_1.info(`Sending POST request to ${url}`);
+              yield axios_1.default.post(url, data, {
+                  headers,
+                  params,
+              });
+          }
+          else if (type === 'PATCH') {
+              core_1.info(`Sending PATCH request to ${url}`);
+              yield axios_1.default.patch(url, data, {
+                  headers,
+                  params,
+              });
+          }
+      }
         catch (err) {
             if (err instanceof Error) {
                 core_1.error(err.message);
