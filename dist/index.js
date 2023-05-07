@@ -45,6 +45,13 @@ function run() {
                   params,
               });
           }
+          else if (type === 'PUT') {
+              core_1.info(`Sending PUT request to ${url}`);
+              yield axios_1.default.put(url, data, {
+                  headers,
+                  params,
+              });
+          }
       }
         catch (err) {
             if (err instanceof Error) {
